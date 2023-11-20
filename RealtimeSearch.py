@@ -11,9 +11,17 @@ load_dotenv()
 # Create OpenAI client object
 client = OpenAI()
 
-def generate_google_search_query(user_query):
+def generate_google_search_query(user_query, call_as_function=False):
     """ Uses GPT4 to convert the query enterred by the user into a more optimized query that can provide good results from a google search.
     """
+
+    if call_as_function:
+        # Load environment variables from the .env file
+        load_dotenv()
+
+        # Create OpenAI client object
+        client = OpenAI()
+        
     system_prompt = "You are a Google Search expert. Your task is to convert unstructured user inputs to optimized Google search queries. Example: USER_INPUT: 'Who was the winner of the 2023 ICC Cricket World Cup?' OPTIMIZED Google search query: 'ICC cricket world cup winner 2023'"
     
     prompt = f"Convert the following user query into an optimized Google search query: {user_query}"
